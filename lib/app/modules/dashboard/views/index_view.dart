@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:myapp/app/data/event_response.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+
+import '../../../data/event_response.dart';
 import '../controllers/dashboard_controller.dart';
 import 'event_detail_view.dart';
 
@@ -51,6 +52,7 @@ class IndexView extends GetView {
               shrinkWrap:
                   true, // Membatasi ukuran ListView agar sesuai dengan konten
               itemBuilder: (context, index) {
+                final event = snapshot.data!.events![index];
                 return ZoomTapAnimation(
                   onTap: () {
                     // Navigasi ke EventDetailView saat item ditekan
@@ -83,7 +85,7 @@ class IndexView extends GetView {
                       const SizedBox(height: 16), // Jarak antara elemen
                       // Menampilkan judul event
                       Text(
-                        snapshot.data!.events![index].name.toString(),
+                        event.name.toString(),
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight:
@@ -93,7 +95,7 @@ class IndexView extends GetView {
                       const SizedBox(height: 8), // Jarak antara elemen
                       // Menampilkan deskripsi event
                       Text(
-                        snapshot.data!.events![index].description.toString(),
+                        event.description.toString(),
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.grey, // Warna teks abu-abu
@@ -111,7 +113,7 @@ class IndexView extends GetView {
                               width: 8), // Jarak antara ikon dan teks
                           Expanded(
                             child: Text(
-                              snapshot.data!.events![index].location
+                              event.location
                                   .toString(), // Lokasi event
                               style: const TextStyle(
                                 fontSize: 16,
